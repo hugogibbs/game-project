@@ -9,37 +9,64 @@
 <body>
     <script>
         
+        let winCount = 0;
+        let loseCount = 0;
+
+        for (let i = 0; i < 5; i++) {
 
         options = ['rock', 'paper', 'scissors'];
         computerSelection = options[Math.floor(Math.random() * options.length)];
-
-        let playerSelection = prompt('Insert your choice');
-        
-        console.log(playerSelection, computerSelection);
+    
+        let playerSelection = prompt('Insert your Choice');
+    
+        console.log(playerSelection);
+        console.log(computerSelection);
 
         if ( playerSelection == 'scissors' && computerSelection == 'paper'){
             console.log('You Win, scissors beats paper ');
+            winCount++;
         }
         else if ( playerSelection == 'scissors' && computerSelection == 'rock'){
             console.log('You Lose, rock beats scissors');
+            loseCount++;
         }
         else if ( playerSelection == 'rock' && computerSelection == 'paper'){
             console.log('You Lose, paper beats rock');
+            loseCount++;
         }
         else if ( playerSelection == 'rock' && computerSelection == 'scissors'){
             console.log('You Win, rock beats scissors');
+            winCount++;
         }
         else if ( playerSelection == 'paper' && computerSelection == 'scissors'){
             console.log('You Lose, scissors beats paper');
+            loseCount++;
         }
         else if ( playerSelection == 'paper' && computerSelection == 'rock'){
             console.log('You Win, paper beats rock');
+            winCount++;
         }
         else if ( playerSelection == computerSelection) {
             console.log('It\'s a tie!');
         }
         else {
             console.log('Wrong inputs');
+        }
+        
+
+        console.log(winCount);
+        console.log(loseCount);
+
+    }
+
+        if (winCount > loseCount){
+            console.log('Game Completed: Congratulations! Player Wins')
+        }
+        else if (winCount < loseCount){
+            console.log('Game Completed: Computer Wins, try again!')
+        }
+        else if (winCount == loseCount){
+            console.log('Game Completed: It\'s a tie between player and computer')
         }
 
     </script> 
