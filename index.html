@@ -7,21 +7,36 @@
     <title>Document</title>
 </head>
 <body>
+
+    <button class="selection" data-selection="scissors">scissors</button>
+    <button class="selection" data-selection="rock">rock</button>
+    <button class="selection" data-selection="paper">paper</button>
+
+
     <script>
-        
+
         let winCount = 0;
         let loseCount = 0;
-        let win 
 
-        for (let i = 0; i < 5; i++) {
+        // we need to define the playerSelection chosen by clicking on one of the buttons
+
+        const selectionButtons = document.querySelectorAll('[data-selection]');
+        
+        selectionButtons.forEach(selectionButton => {
+            
+            // define playerSelection as 'scissors' in case this button is clicked
+            selectionButton.addEventListener('click', e => {
+                const playerSelection= selectionButton.dataset.selection;
+                playRound(playerSelection);
+            
+            }) 
+        })
+
+        function playRound(playerSelection, computerSelection) {
 
         options = ['rock', 'paper', 'scissors'];
         computerSelection = options[Math.floor(Math.random() * options.length)];
-    
-        let playerSelection = prompt('Insert your Choice');
-    
-        console.log(playerSelection);
-        console.log(computerSelection);
+        
 
         if ( playerSelection == 'scissors' && computerSelection == 'paper'){
             console.log('You Win, scissors beats paper ');
@@ -54,11 +69,11 @@
             console.log('Wrong inputs');
         }
         
-
+        console.log(playerSelection);
+        console.log(computerSelection);
         console.log(winCount);
         console.log(loseCount);
 
-    }
 
         if (winCount > loseCount){
             console.log('Game Completed: Congratulations! Player Wins')
@@ -69,6 +84,9 @@
         else if (winCount == loseCount){
             console.log('Game Completed: It\'s a tie between player and computer')
         }
+
+
+    }
 
     </script> 
 
