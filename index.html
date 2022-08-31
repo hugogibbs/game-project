@@ -8,35 +8,50 @@
 </head>
 <body>
 
-    <button class="selection" data-selection="scissors">scissors</button>
-    <button class="selection" data-selection="rock">rock</button>
-    <button class="selection" data-selection="paper">paper</button>
+    <button data-selection="scissors">scissors</button>
+    <button data-selection="rock">rock</button>
+    <button data-selection="paper">paper</button>
 
+    <div class="playerScore">
+        <div>Player Score:</div>
+        <div id="winCount"></div> 
+    </div>
+    
+    <div class ="computerScore">
+        <div>Computer Score:</div>
+        <div id="loseCount"></div>
+    </div>
+
+    <div id="result"></div>
 
     <script>
 
+        
         let winCount = 0;
         let loseCount = 0;
 
-        // we need to define the playerSelection chosen by clicking on one of the buttons
-
-        const selectionButtons = document.querySelectorAll('[data-selection]');
+        document.getElementById('winCount').textContent = winCount;
+        document.getElementById('loseCount').textContent = loseCount;
         
-        selectionButtons.forEach(selectionButton => {
-            
+
+        // we need to define the playerSelection chosen by clicking on one of the buttons
+        
+        const selections = document.querySelectorAll('[data-selection]');
+
+        selections.forEach(selection => {
+
             // define playerSelection as 'scissors' in case this button is clicked
-            selectionButton.addEventListener('click', e => {
-                const playerSelection= selectionButton.dataset.selection;
+            selection.addEventListener('click', e => {
+                playerSelection= selection.dataset.selection;
                 playRound(playerSelection);
-            
-            }) 
+
+            })
         })
 
         function playRound(playerSelection, computerSelection) {
-
+        
         options = ['rock', 'paper', 'scissors'];
         computerSelection = options[Math.floor(Math.random() * options.length)];
-        
 
         if ( playerSelection == 'scissors' && computerSelection == 'paper'){
             console.log('You Win, scissors beats paper ');
@@ -74,19 +89,38 @@
         console.log(winCount);
         console.log(loseCount);
 
+        document.getElementById('winCount').textContent = winCount;
+        document.getElementById('loseCount').textContent = loseCount;
+
+    
+
+
+    if (winCount == 5 || loseCount == 5){
 
         if (winCount > loseCount){
-            console.log('Game Completed: Congratulations! Player Wins')
+            console.log('Game Completed: Congratulations! Player Wins');
+            result = 'Game Completed: Congratulations! Player Wins';
+            winCount = 0;
+            loseCount = 0;
         }
         else if (winCount < loseCount){
-            console.log('Game Completed: Computer Wins, try again!')
+            console.log('Game Completed: Computer Wins, try again!');
+            result = 'Game Completed: Computer Wins, try again!';
+            winCount = 0;
+            loseCount = 0;
         }
         else if (winCount == loseCount){
             console.log('Game Completed: It\'s a tie between player and computer')
+            result = 'Game Completed: It\'s a tie between player and computer';
+            winCount = 0;
+            loseCount = 0;
         }
-
+    
+        document.getElementById('result').textContent = result;
 
     }
+
+}
 
     </script> 
 
